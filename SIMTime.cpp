@@ -2,12 +2,14 @@
 
 SIMTime::SIMTime(){
    time_sim=0;
+   scaling = 0;
 }
-SIMTime::SIMTime(int t_start){
-   time_sim = t_start;
+SIMTime::SIMTime(double t_scale){
+   time_sim = 0;
+   scaling = t_scale;
 };
-unsigned int SIMTime::get_Time(){
-   return time_sim;
+double SIMTime::get_Time(){
+   return time_sim*scaling;
 };
 void SIMTime::next_Time(){
    time_sim = time_sim+1;

@@ -6,14 +6,20 @@ Antenna::Antenna(){
    pos.y = 0;
    mode = 0;
 }
-Antenna::Antenna(Position pos,Signal sig,int type){
+Antenna::Antenna(Position pos){
    this->pos = pos;
-   mode = type; // 0 RX; 1 RX
+   mode = 0;
+}
+Antenna::Antenna(Position pos,Signal sig){
+   this->pos = pos;
+   mode = 1; // 0 RX; 1 TX
    this->TX = sig;
 }
-void Antenna::RX(Antenna ant,unsigned int time){
+void Antenna::RX(Antenna ant,double time){
    if (!mode){
-      double d = pow( pow(ant.pos.x-pos.x,2)+pow(ant.pos.y-pos.y,2) , 2);
+      double d = pow( pow(ant.pos.x-pos.x,2)+pow(ant.pos.y-pos.y,2) ,0.5 );
       voltage = ant.TX.get_Signal(d,time);
+   }else{
+      voltage = 0;
    }
 }
