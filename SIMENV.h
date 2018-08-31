@@ -14,6 +14,7 @@ struct Position{double x; double y;};
 //{{{ Signal Class
 class Signal{
    public:
+      Signal();
       double get_Signal(double,unsigned int);
       void set_PropSpeed(double);
    private:
@@ -23,6 +24,7 @@ class Signal{
 //{{{ Antenna Class
 class Antenna{
    public:
+      Antenna();
       Antenna(Position,Signal,int);
       Position pos;
       Signal TX;
@@ -35,6 +37,7 @@ class Antenna{
 //{{{ SIMTime Class
 class SIMTime{
    public:
+      SIMTime();
       SIMTime(int);
       unsigned int get_Time();
       void next_Time();
