@@ -1,5 +1,8 @@
 #include "SIMENV.h"
 
+SIMTime::SIMTime(){
+   time_sim=0;
+}
 SIMTime::SIMTime(int t_start){
    time_sim = t_start;
 };
