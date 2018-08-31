@@ -10,12 +10,14 @@ class Antenna;
 class SIMTime;
 class SIMENV;
 struct Position{double x; double y;};
+// Custom Antennas
+class ULA;
 
 //{{{ Signal Class
 class Signal{
    public:
       Signal();
-      double get_Signal(double,double);
+      double signal_Function(double,double);
       void set_PropSpeed(double);
    private:
       double prop_speed;
@@ -28,10 +30,11 @@ class Antenna{
       Antenna(Position);
       Antenna(Position,Signal);
       Position pos;
-      Signal TX;
+      Signal sig;
       double voltage;
       int mode;
       void RX(Antenna,double);
+      double TX(double,double);
 
 };
 //}}}
@@ -53,6 +56,7 @@ class SIMTime{
 class SIMENV{
    public:
       SIMENV(SIMTime *);
+      ~SIMENV();
       void add_Antenna(Antenna);
       void remove_Antenna(Antenna);
       double *get_Voltages();
@@ -64,6 +68,18 @@ class SIMENV{
 };
 //}}}
 
+
+//{{{ ULA Class
+class ULA:Antenna{
+   public:
+      ULA(Position,double,double, int);
+      Antenna *antennas;
+      void RX(Antenna,double);
+      double TX(double, double);
+      int num_antennas;
+   private:
+      double distance(Position,Position);
+};
 
 
 

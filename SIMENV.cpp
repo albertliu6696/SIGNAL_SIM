@@ -8,6 +8,11 @@ SIMENV::SIMENV(SIMTime *time){
    antennas = new Antenna[10];
 };
 
+SIMENV::~SIMENV(){
+   std::cout<<"Destructor Called"<<std::endl;
+   delete [] antennas;
+}
+
 void SIMENV::add_Antenna(Antenna a){
    if(ant_ptr==ant_arrsize){
       Antenna *temp_arr = new Antenna[ant_arrsize*2];
